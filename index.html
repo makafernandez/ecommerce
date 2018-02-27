@@ -62,7 +62,7 @@
 		<div id="category-bar" class="container">
 			<nav class="nav nav-justified text-uppercase">
 				<a class="nav-item nav-link" href="#">novedades</a>
-				<a class="nav-item nav-link" href="#home-template">home</a>
+				<a id="homeBtn" class="nav-item nav-link" href="#home-template">home</a>
 				<a class="nav-item nav-link" href="#">arte</a>
 				<a class="nav-item nav-link" href="#">tech</a>
 				<a class="nav-item nav-link" href="#">regalos</a>
@@ -70,32 +70,7 @@
 		</div>
 	</header>
 	<main id="main" class="container-fluid">
-	<!--
-	<div class="container">
-		<div class="col-sm-12">
-			<div class="row" id="divProductsList">
-				<div class="col-md-4">
-					<div class="card mb-5 box-shadow">
-						<img src="assets/img/camp.png" alt="Responsive image" class="img rounded">
-						<div class="card-body">
-							<p class="card-text">
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								  Vel iusto enim reiciendis minima fuga ullam, 
-									placeat quasi maiores illo odit sequi quos. Tempora, 
-									voluptate accusantium iste saepe illum autem pariatur!
-							</p>
-							<div class="d-flex justify-content-between aling-items-center">
-								<div class="btn-group">
-									<button class="btn btn-sm btn-outline-secondary btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">view</button>
-								</div>
-							</div>   
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
+	
 	</main>
 	<footer>
 		<!-- Footer Nav -->
@@ -171,7 +146,7 @@
 				<div class="col text-center">
 					<div class="row">
 						<div class="col-sm-12">
-							<img src="assets/images/app-store.svg">
+							<img src="assets/img/app-store.svg">
 						</div>
 					</div>
 					<div class="row">
@@ -212,35 +187,25 @@
 		</div>
 	</footer>
 	<!-- Templates -->
-	<script id="home-template" type="text/x-handlebars-template">
+	<script id="allproducts-template" type="text/x-handlebars-template">
 		<div class="container">
 			<div class="row pt-3 mb-3">
 				<div class="col-sm-12">
-					<div id="destacados">
-						<h6 class="ml-5">DESTACADOS</h6>
-						<div class="row text-center justify-content-center">
+					<div id="smartphones" class="text-left">
+						<h6 class="ml-5">SMARTPHONES</h6>
+						<div class="row justify-content-center">
 							<div class="col-sm-12">
-								{{#each this}}
-								<div class="thumb col-2">
-									<img src="{{thumbnail}}" alt="{{id}}">
-									<a href="#">{{title}}</a>
-									<p>$ {{price}}</p>
+								<div class="row">
+									{{#each this}}
+									<div class="col-2">
+										<div class="thumb">
+											<img src="{{thumbnail}}">
+											<a class="productPage" href="#/items/{{id}}">{{title}}</a>
+											<p>$ {{price}}</p>
+										</div>
+									</div>
+									{{/each}}
 								</div>
-								{{/each}}
-							</div>
-						</div>
-					</div>
-					<div id="novedades">
-						<h6 class="ml-5">NOVEDADES</h6>
-						<div class="row text-center justify-content-center">
-							<div class="col-sm-12">
-								{{#each this}}
-								<div class="thumb col-2">
-									<img src="{{thumbnail}}" alt="{{id}}">
-									<a href="#">{{title}}</a>
-									<p>$ {{price}}</p>
-								</div>
-								{{/each}}
 							</div>
 						</div>
 					</div>
@@ -253,14 +218,14 @@
 			<div class="row">
 				<div class="col-md-2 col-sm-12"></div>
 				<div class="col-md-5 col-sm-12">
-					<img src="less-blue-700x700.jpg" class="img-fluid" alt="">
+					<img src="{{pictures.secure_url}}" class="img-fluid" alt="">
 				</div>
 				<div class="col-md-5 col-sm-12">
 					<div class="pl-5 py-5">
-						<h2>Grumpy Fucker Pillow</h2>
+						<h2>{{title}}</h2>
 					</div>
 					<div class="pl-5 py-3">
-						<h3 class="font-weight-bold">$35.000</h3>
+						<h3 class="font-weight-bold">$ {{price}}</h3>
 					</div>
 					<div class="w-25 pl-5 py-3">
 						<select class="custom-select custom-select-sm">
@@ -287,14 +252,13 @@
 				<div class="col-md-6 col-sm-12">
 					<h3>Descripción</h3>
 					<div class="pt-2">
-						<p class="text-justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque voluptate enim corporis eaque accusamus voluptatem aperiam
-							non labore doloribus laborum? Minus necessitatibus sint temporibus aliquid animi cum, nisi labore voluptate.</p>
+						<p class="text-justify">{{attributes[0].value_name}}</p>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">
 					<h3>Más Detalles</h3>
 					<div class="pt-2">
-						<p class="text-justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque voluptate enim corporis eaque accusamus voluptatem aperiam.</p>
+						<p class="text-justify">{{warranty}}</p>
 					</div>
 				</div>
 			</div>
@@ -303,9 +267,13 @@
 	<script id="search-template" type="text/x-handlebars-template">
 	
 	</script>
+	<script id="category-template" type="text/x-handlebars-template">
+	
+	</script>
 	<!-- Script -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	 crossorigin="anonymous"></script>
+	<script src="assets/js/sammy-latest.min.js"></script>
 	<script src="assets/js/handlebars-v4.0.11.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	 crossorigin="anonymous"></script>

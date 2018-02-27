@@ -134,7 +134,6 @@ button {
 /*-----------------
 	Home
 ------------------*/
-/* Make the image fully responsive */
 h6 {
 	font-weight: 700;
 	font-size: 0.95rem;
@@ -143,8 +142,12 @@ h6 {
 .thumb {
 	display: inline-block;
 	text-align: left;
-	font-size: 0.9rem;
-	font-weight: 600;
+	font-size: 0.8rem;
+	font-weight: 500;
+}
+
+.thumb img {
+	width: 100%;
 }
 
 /*-------------------
