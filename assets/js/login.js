@@ -9,27 +9,32 @@ var config = {
 };
 firebase.initializeApp(config);
 
-function logGoogle() {
-  if (!firebase.auth().currentUser) {
-    var provider = new firebase.auth.GoogleAuthProvider();
-
-    provider.addScope('https://www.googleapis.com/auth/plus.login');
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-      var token = result.credential.accessToken;
-      var user = result.user;
-      var name = result.user.displayName;
-      var correo = result.user.email;
-      var foto = result.user.photoURL;
-      var red = 'Google';
-      location.href = 'index.html?name=' + name;
-    }).catch(function(error) {
-      var errorCode = error.code;
-      if (errorCode === 'auth/account-exist-with-diferen-credential') {
-        alert('el usuario ya existe');
-      }
-    });
+var provider = new firebase.auth.GoogleAuthProvider();
+$('#btn-Google').click(function() {
+  firebase.auth().signInWithPopup(provider).then(function(data) {
+    var user = data.user;
+    console.log(user);
+    var name = user.displayName;
+    $('h3').text(user.displayName);
+    console.log(user.displayName);
+  }).catch(function(error) {
+    console.log(error);
+  });
+});
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    $('h3').text(user.displayName);
+    $('.inicio').hide;
+    $('.usuario').show;
   } else {
-    firebase.auth().signOut();
+    $('.inicio').show;
+    $('.usuario').hide;
   }
-}
-document.getElementById('btn-Google').addEventListener('click', logGoogle, false);
+}); 
+// cerrar session  
+$('#cerrar').click(function() {
+  firebase.auth().signOut().then(function() {
+    $('.inicio').show;
+    $('.usuario').hide;
+  });   
+});
