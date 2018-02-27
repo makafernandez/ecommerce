@@ -36,3 +36,16 @@ function getProductDetail(productId){
     // });
   }); 
 }
+
+$(document).ready(() => {
+  $('.carousel').carousel();
+  $('#searchForm').submit(function(event) {
+    if ($('#searchText').val() == '') {
+      alert('Debe escribir un producto a buscar');
+    }else {
+      getMLProducts($('#searchText').val());
+      $('#searchText').val('');
+    }
+    event.preventDefault();
+  });
+});
