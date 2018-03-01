@@ -102,7 +102,7 @@ function getAllProducts() {
     console.log(products);
 
     // Pass our data to the template:
-    let html = template(products);
+    let html = template(context);
 
     // Add the compiled html to the page:
     $('#main').html(html);

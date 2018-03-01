@@ -37,7 +37,7 @@ $(document).ready(function() {
       prevProducto += '<h2>' + valor.articulo + '</h2></div>';
 
       prevProducto += '<div class="row"><div class="col-md-3 cabeceraProducto">';
-      prevProducto += '<h2>' + valor.precio + ' </h2></div>';
+      prevProducto += '<h2 class="precio">' + valor.precio + ' </h2></div>';
       prevProducto += '</div>';
 
       prevProducto += '<div class="row">';
@@ -49,9 +49,13 @@ $(document).ready(function() {
       prevProducto += '</div>';
 
       prevProducto += '<div class="col-md-3">';
-      prevProducto += '<p>' + valor.descripcion + '</p>';
+      prevProducto += '<p class="">' + valor.descripcion + '</p>';
       prevProducto += '</div>';
       prevProducto += '</div>';
+      prevProducto += '<button class="comprar">';
+      prevProducto += '<p >'+'Añade al carrito' + '</p>';
+      prevProducto += '<button>'
+      
 
       prevProducto += '</div>';
       prevProducto += '<div class="row espaciador">';
