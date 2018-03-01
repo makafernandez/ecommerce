@@ -1,4 +1,5 @@
 (function($) {
+
   var app = $.sammy('#main', function() {
     // todos los productos
     this.get('#/', function(context) {
@@ -28,11 +29,11 @@
         }
       });
     });
-    let id = '';
+
     // vista producto
-    this.get('#/items/:id', function(id) {
+    this.get('#/items/:id', function(context) {
       $.ajax({
-        url: `https://api.mercadolibre.com/items/${context.id}`,
+        url: `https://api.mercadolibre.com/items/${context}`,
         dataType: 'json',
 
         success: function(response) {
@@ -50,8 +51,36 @@
         }
       });
     });
+
     $(function() {
       app.run('#/');
+    });
+
+    // busqueda 
+    let keyword = '';
+    $('#searchBtn').click(function() {
+      keyword = $('#searchText').val();
+      console.log(keyword);
+      // Grab the template script:
+      const source = $('#search-template').html();
+      // Compile the template:
+      const template = Handlebars.compile(source);
+
+      // Define our data object
+      let context = '';
+      $.get(`https://api.mercadolibre.com/sites/MLC/search?q=${keyword}`, function(data) {
+        context = data.results;
+        console.log(context);
+
+        // Pass our data to the template:
+        let html = template(context);
+
+        // Add the compiled html to the page:
+        $('#main').html(html);
+
+        // Manually trigger a hashchange to start the app.
+        $(window).trigger('hashchange');
+      });
     });
   });
 })(jQuery);

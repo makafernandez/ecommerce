@@ -181,7 +181,7 @@
 						</a>
 					</small>
 				</div>
-			</div>
+				</div>
 			</div>
 			
 		</div>
@@ -200,7 +200,7 @@
 									<div class="col-2">
 										<div class="thumb">
 											<img src="{{thumbnail}}">
-											<a class="productPage" href="#/items/{{id}}">{{title}}</a>
+											<a class="productPage" href="#/items/:id">{{title}}</a>
 											<p>$ {{price}}</p>
 										</div>
 									</div>
@@ -252,7 +252,7 @@
 				<div class="col-md-6 col-sm-12">
 					<h3>Descripción</h3>
 					<div class="pt-2">
-						<p class="text-justify">{{attributes[0].value_name}}</p>
+						<p class="text-justify">{{attributes.value_name}}</p>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">
@@ -265,33 +265,31 @@
 		</div>
 	</script>
 	<script id="search-template" type="text/x-handlebars-template">
-	
-	</script>
-	
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Acceder</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<button id="btn-Google" class="btn btn-danger btn-block">Google</button>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+		<div class="container">
+			<div class="row pt-3 mb-3">
+				<div class="col-sm-12">
+					<div id="smartphones" class="text-left">
+						<h6 class="ml-5">PRODUCTOS ENCONTRADOS</h6>
+						<div class="row justify-content-center">
+							<div class="col-sm-12">
+								<div class="row">
+									{{#each this}}
+									<div class="col-2">
+										<div class="thumb">
+											<img src="{{thumbnail}}">
+											<a class="productPage" href="#/items/:id">{{title}}</a>
+											<p>$ {{price}}</p>
+										</div>
+									</div>
+									{{/each}}
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<script id="category-template" type="text/x-handlebars-template">
-	
 	</script>
-
 	<!-- Script -->
 	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -304,6 +302,5 @@
 	 crossorigin="anonymous"></script>
 	 <script src="assets/js/login.js"></script>
 	<script src="assets/js/script.js"></script>
-
 </body>
 </html>
