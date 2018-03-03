@@ -6,7 +6,7 @@
       $.ajax({
         url: 'https://api.mercadolibre.com/sites/MLC/search?',
         data: {
-          q: 'celular',
+          q: '',
           limit: '48'
         },
         dataType: 'json',
