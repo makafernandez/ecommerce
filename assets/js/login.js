@@ -9,6 +9,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// Inicia sesión
 var provider = new firebase.auth.GoogleAuthProvider();
 $('#btn-Google').click(function() {
   firebase.auth().signInWithPopup(provider).then(function(data) {
@@ -21,6 +22,8 @@ $('#btn-Google').click(function() {
     console.log(error);
   });
 });
+
+// Observador de estado
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     $('h3').text(user.displayName);
@@ -30,8 +33,9 @@ firebase.auth().onAuthStateChanged(function(user) {
     $('.inicio').show;
     $('.usuario').hide;
   }
-}); 
-// cerrar session  
+});
+
+// Cierre de sesión  
 $('#cerrar').click(function() {
   firebase.auth().signOut().then(function() {
     $('.inicio').show;
