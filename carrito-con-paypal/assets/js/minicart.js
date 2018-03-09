@@ -1,4 +1,4 @@
-/*!
+/* !
  * minicart
  * The Mini Cart is a great way to improve your PayPal shopping cart integration.
  *
@@ -1045,7 +1045,7 @@ process.chdir = function (dir) {
 
 },{}],6:[function(require,module,exports){
 
-/*!
+/* !
  * EJS
  * Copyright(c) 2012 TJ Holowaychuk <tj@vision-media.ca>
  * MIT Licensed
@@ -1403,7 +1403,7 @@ if (require.extensions) {
 }
 
 },{"./filters":7,"./utils":8,"fs":2,"path":3}],7:[function(require,module,exports){
-/*!
+/* !
  * EJS - Filters
  * Copyright(c) 2010 TJ Holowaychuk <tj@vision-media.ca>
  * MIT Licensed
@@ -1607,7 +1607,7 @@ exports.json = function(obj){
 
 },{}],8:[function(require,module,exports){
 
-/*!
+/* !
  * EJS
  * Copyright(c) 2010 TJ Holowaychuk <tj@vision-media.ca>
  * MIT Licensed

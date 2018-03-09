@@ -1,4 +1,0 @@
-[0227/092602.380:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
-[0227/092606.911:ERROR:process_info.cc(632)] range at 0x568833d400000000, size 0x1fb fully unreadable
-[0227/092606.911:ERROR:process_info.cc(632)] range at 0x568833f400000000, size 0x1fb fully unreadable
-[0227/092606.911:ERROR:process_info.cc(632)] range at 0x0, size 0x1fb fully unreadable

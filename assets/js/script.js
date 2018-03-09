@@ -1,12 +1,11 @@
 (function($) {
-
   var app = $.sammy('#main', function() {
-    // todos los productos
+    // Todos los productos
     this.get('#/', function(context) {
       $.ajax({
         url: 'https://api.mercadolibre.com/sites/MLC/search?',
         data: {
-          q: '',
+          q: 'gadgets',
           limit: '48'
         },
         dataType: 'json',
@@ -22,30 +21,38 @@
           let html = template(items);
           // Add the compiled html to the page:
           $('#main').html(html);
-
-          $.each(items, function(i, item) {
-            id = item.id;
-          });
         }
       });
     });
 
-    // vista producto
-    this.get('#/items/:id', function(context) {
+    // Buscador: 
+    let keyword = '';
+    $('#searchBtn').click(function() {
+      keyword = $('#searchText').val();
+      console.log(keyword);
+      window.location.href = '#/search-results';
+    });
+
+    this.get('#/search-results', function(context) {
       $.ajax({
-        url: `https://api.mercadolibre.com/items/${context}`,
+        url: 'https://api.mercadolibre.com/sites/MLC/search?',
+        data: {
+          q: `${keyword}`,
+          limit: '48'
+        },
         dataType: 'json',
 
         success: function(response) {
           context.log('the page was loaded', response);
-          let item = response;
+          let items = response.results;
+          context.log(items);
 
           // Grab the template script:
-          const source = $('#product-template').html();
+          const source = $('#search-template').html();
           // Compile the template:
           const template = Handlebars.compile(source);
           // Pass our data to the template:
-          let html = template(item);
+          let html = template(context);
           // Add the compiled html to the page:
           $('#main').html(html);
         }
@@ -56,63 +63,29 @@
       app.run('#/');
     });
 
-    // busqueda 
-    let keyword = '';
-    $('#searchBtn').click(function() {
-      keyword = $('#searchText').val();
-      console.log(keyword);
-      // Grab the template script:
-      const source = $('#search-template').html();
-      // Compile the template:
-      const template = Handlebars.compile(source);
+    /* Define our data object
+    let context = '';
+    $.get(`https://api.mercadolibre.com/sites/MLC/search?q=${keyword}`, function(data) {
+      context = data.results;
+      console.log(context);
+      // Pass our data to the template:
+      let html = template(context);
 
-      // Define our data object
-      let context = '';
-      $.get(`https://api.mercadolibre.com/sites/MLC/search?q=${keyword}`, function(data) {
-        context = data.results;
-        console.log(context);
-
-        // Pass our data to the template:
-        let html = template(context);
-
-        // Add the compiled html to the page:
-        $('#main').html(html);
-
-        // Manually trigger a hashchange to start the app.
-        $(window).trigger('hashchange');
-      });
-    });
+      // Add the compiled html to the page:
+      $('#main').html(html);
+      // Manually trigger a hashchange to start the app.
+      $(window).trigger('hashchange');
+    }); */
   });
 })(jQuery);
 
+// Vista Detalle Producto:
+$('.productPage').click(function() {
+  let id = $(this).attr('id');
+  console.log('id');
+});
 
-/*
-// PAGE HOME
-function getAllProducts() {
-  // Grab the template script:
-  const source = $('#allproducts-template').html();
-
-  // Compile the template:
-  const template = Handlebars.compile(source);
-
-  // Define our data object
-  let products = '';
-  $.get('https://api.mercadolibre.com/sites/MLC/search?q=celular&limit=48', function(data) {
-    products = data.results;
-    console.log(products);
-
-    // Pass our data to the template:
-    let html = template(context);
-
-    // Add the compiled html to the page:
-    $('#main').html(html);
-
-    // Manually trigger a hashchange to start the app.
-    $(window).trigger('hashchange');
-  });
-}
-
-// SEARCH RESULTS:
+/* // SEARCH RESULTS:
 $('#searchBtn').click(function() {
   let keyword = $('#searchText').val();
   console.log(keyword);
@@ -138,9 +111,9 @@ $('#searchBtn').click(function() {
       $(window).trigger('hashchange');
     });
   });
-});
+}); */
 
-// VISTA PRODUCTO:
+/* // VISTA PRODUCTO:
 function getProductDetail(productID) {
   // Grab the template script:
   const source = $('#product-template').html();

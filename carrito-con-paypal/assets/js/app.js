@@ -1,21 +1,20 @@
 paypal.minicart.render({
-    strings:{
-        button: 'pagar',
-        buttonAlt: "total",
-        subtotal: 'total',
-        empty: 'no hay producto seleccionado'
-
-    }
+  strings: {
+    button: 'pagar',
+    buttonAlt: 'total',
+    subtotal: 'total',
+    empty: 'no hay producto seleccionado'
+  }
 });
 
-$('.producto').click(function(e){
-    e.stopPropagation();
-    paypal.minicart.cart.add({
-        business:'heyyo@hey.com',//cuenta para depositar
-        item_name: $(this).attr('titulo'),
-        amount: $(this).attr('precio'),
-        currency_code: 'CLP'
-})
+$('.producto').click(function (e) {
+  e.stopPropagation();
+  paypal.minicart.cart.add({
+    business: 'heyyo@hey.com', // cuenta para depositar
+    item_name: $(this).attr('titulo'),
+    amount: $(this).attr('precio'),
+    currency_code: 'CLP'
+  });
 });
 
 // paypal.Button.render({
@@ -35,7 +34,7 @@ $('.producto').click(function(e){
 //             transactions: [
 //                 {
 //                     amount: { total: '1.00', currency: 'USD' }
-                    
+
 //                 }
 //             ]
 //         }
@@ -47,7 +46,7 @@ $('.producto').click(function(e){
 
 //         // The payment is complete!
 //         // You can now show a confirmation message to the customer
-//     });
+//  });
 // }
 
 // },);
