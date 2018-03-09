@@ -28,7 +28,7 @@
     <!-- Main Navbar -->
 		<div id="main-nav" class="navbar navbar-expand-lg">
 			<nav class="container">
-				<a class="navbar-brand" href="#home">FabH<i class="far fa-heart fa-xs"></i>me</a>
+				<a class="navbar-brand" href="#/">FabH<i class="far fa-heart fa-xs"></i>me</a>
 				<!-- Collapse mobile -->
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@
 							</div>
 							<input type="search" id="searchText" class="form-control" placeholder="Qué quieres comprar?" aria-label="What are you shopping for?" aria-describedby="basic-addon1">
 							<div class="input-group-append">
-								<button id="searchBtn" class="btn btn-outline-secondary" type="submit">Buscar</button>
+								<button data-trigger="#/search" id="searchBtn" class="btn btn-outline-secondary" type="button">Buscar</button>
 							</div>
 						</div>
 					</form>
@@ -60,11 +60,11 @@
     <!-- Category Bar -->
 		<div id="category-bar" class="container">
 			<nav class="nav nav-justified text-uppercase">
-				<a class="nav-item nav-link" href="#category">living</a>
-				<a class="nav-item nav-link" href="#">infantil</a>
-				<a class="nav-item nav-link" href="#">dormitorio</a>
-				<a class="nav-item nav-link" href="#">cocina</a>
-				<a class="nav-item nav-link" href="#">oficina</a>
+				<a id="living" class="nav-item nav-link" href="#/category/living">living</a>
+				<a id="infantil" class="nav-item nav-link" href="#/category/infantil">infantil</a>
+				<a id="dormitorio" class="nav-item nav-link" href="#/category/dormitorio">dormitorio</a>
+				<a id="cocina" class="nav-item nav-link" href="#/category/cocina">cocina</a>
+				<a id="oficina"class="nav-item nav-link" href="#/category/oficina">oficina</a>
 			</nav>
 		</div>
   </header>
@@ -88,8 +88,8 @@
 			</div>
 		</div>
 	</div> <!-- .fin Modal Log In -->
-	<main id="main" class="container-fluid">
-	
+  <main id="main" class="container-fluid">
+    <!-- Aquí se renderiza el contenido -->
 	</main>
 	<footer class="pb-5">
 		<!-- Footer Nav -->
@@ -220,13 +220,13 @@
 		<div class="container">
 			<div class="row pt-6">
 				<div class="col-sm-12">
-					<section id="living" class="text-left section">
-						<h5 class="mb-3">living</h5>
+					<section class="text-left section">
+						<h5 class="mb-3">{{query}}</h5>
             <div class="container">
               <div class="row justify-content-center">
                 <div class="col-sm-12">
                   <div class="row">
-                    {{#each this}}
+                    {{#each results}}
                     <div class="col-2">
                       <div class="thumb">
                         <img src="{{thumbnail}}">
@@ -245,15 +245,16 @@
 		</div>
 	</script>
 	<script id="item" type="text/x-handlebars-template">
-		<div class="container">
+		<div class="container mt-5">
 			<div class="row">
 				<div class="col-md-2 col-sm-12"></div>
 				<div class="col-md-5 col-sm-12">
-					<img src="{{pictures.secure_url}}" class="img-fluid" alt="">
+          <img src="{{pictures.[0].secure_url}}" class="img-fluid" alt="">
 				</div>
 				<div class="col-md-5 col-sm-12">
 					<div class="pl-5 py-5">
-						<h2>{{title}}</h2>
+            <h2>{{title}}</h2>
+            <small>{{id}}</small>
 					</div>
 					<div class="pl-5 py-3">
 						<h3 class="font-weight-bold">$ {{price}}</h3>
@@ -283,13 +284,13 @@
 				<div class="col-md-6 col-sm-12">
 					<h3>Descripción</h3>
 					<div class="pt-2">
-						<p class="text-justify">{{attributes[0].value_name}}</p>
+						<p class="text-justify">{{title}}</p>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">
 					<h3>Más Detalles</h3>
 					<div class="pt-2">
-						<p class="text-justify">{{warranty}}</p>
+						<p class="text-justify">Garantía {{warranty}}</p>
 					</div>
 				</div>
 			</div>

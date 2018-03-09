@@ -144,7 +144,7 @@ button {
   background-position: center;
   background-repeat: no-repeat;
   background-origin: border-box;
-  background-color: #E7C448;
+  background-color: #FBE680;
 }
 
 .section h5 {
@@ -162,8 +162,6 @@ button {
 .thumb img {
 	width: 100%;
 }
-
-
 
 /*---------------------------
 	Error Page
