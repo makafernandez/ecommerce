@@ -7,7 +7,7 @@ paypal.minicart.render({
   }
 });
 
-$('.producto').click(function (e) {
+$('.producto').click(function(e) {
   e.stopPropagation();
   paypal.minicart.cart.add({
     business: 'heyyo@hey.com', // cuenta para depositar
