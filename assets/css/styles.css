@@ -139,7 +139,7 @@ button {
 	Home
 ------------------*/
 #hero {
-  background-image: url(./../../img/sofa.jpg)!important;
+  background-image: url(./../img/sofa.jpg)!important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
