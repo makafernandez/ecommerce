@@ -138,6 +138,15 @@ button {
 /*-----------------
 	Home
 ------------------*/
+#hero {
+  background-image: url(./../../img/sofa.jpg)!important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  background-color: #E7C448;
+}
+
 .section h5 {
   font-weight: 700;
   text-transform: uppercase;
