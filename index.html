@@ -11,7 +11,8 @@
 </head>
 <body>
 	<header class="fixed-top">
-		<div id="info-bar" class="text-white p-1">
+    <!-- Info Bar -->
+    <div id="info-bar" class="text-white p-1">
 			<div class="container">
 				<div class="row justify-content-between">
 					<div class="col-3">
@@ -24,10 +25,11 @@
 					</div>
 				</div>
 			</div>
-		</div>
+    </div>
+    <!-- Main Navbar -->
 		<div id="main-nav" class="navbar navbar-expand-lg">
 			<nav class="container">
-				<a class="navbar-brand" href="#">Fab</a>
+				<a class="navbar-brand" href="#home">FabHome</a>
 				<!-- Collapse mobile -->
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -46,29 +48,47 @@
 						</div>
 					</form>
 					<ul class="navbar-nav">
-						<li class="nav-item active">
-							<a class="nav-link" href="#">Lista de regalos</a>
-						</li>
 						<li class="nav-item">
 							<a id="shoppingCart" class="nav-link" href="#"><i id="shopping" class="fas fa-shopping-bag"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Login</a>
+							<a class="nav-link" href="#" data-toggle="modal" data-target="#login">Ingresar</a>
 						</li>
 					</ul>	
 				</div> <!-- fin Collapse Mobile -->
 			</nav>
-		</div>
+    </div>
+    <!-- Category Bar -->
 		<div id="category-bar" class="container">
 			<nav class="nav nav-justified text-uppercase">
-				<a class="nav-item nav-link" href="#">novedades</a>
-				<a id="homeBtn" class="nav-item nav-link" href="#home-template">home</a>
-				<a class="nav-item nav-link" href="#">arte</a>
-				<a class="nav-item nav-link" href="#">tech</a>
-				<a class="nav-item nav-link" href="#">regalos</a>
+				<a class="nav-item nav-link" href="#category">living</a>
+				<a class="nav-item nav-link" href="#">infantil</a>
+				<a class="nav-item nav-link" href="#">dormitorio</a>
+				<a class="nav-item nav-link" href="#">cocina</a>
+				<a class="nav-item nav-link" href="#">oficina</a>
 			</nav>
 		</div>
-	</header>
+  </header>
+  <!-- Modal Log In -->
+	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="Log in" aria-hidden="true">
+		<div class="modal-dialog" role="document">		
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Acceder</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<button id="btn-Google" class="btn btn-danger btn-block">Google</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div> <!-- .fin Modal Log In -->
 	<main id="main" class="container-fluid">
 	
 	</main>
@@ -189,26 +209,56 @@
 	<!-- Templates -->
 	<script id="home" type="text/x-handlebars-template">
 		<div class="container">
-			<div class="row pt-3 mb-3">
+			<div class="row pt-6">
 				<div class="col-sm-12">
-					<div id="smartphones" class="text-left">
-						<h6 class="ml-5">SMARTPHONES</h6>
-						<div class="row justify-content-center">
-							<div class="col-sm-12">
-								<div class="row">
-									{{#each this}}
-									<div class="col-2">
-										<div class="thumb">
-											<img src="{{thumbnail}}">
-											<a class="productPage" href="#/items/:id">{{title}}</a>
-											<p>$ {{price}}</p>
-										</div>
-									</div>
-									{{/each}}
-								</div>
-							</div>
-						</div>
-					</div>
+					<section id="novedades" class="text-left section">
+						<h5 class="mb-3">novedades</h5>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-sm-12">
+                  <div class="row">
+                    {{#each this}}
+                    <div class="col-2">
+                      <div class="thumb">
+                        <img src="{{thumbnail}}">
+                        <a id="{{id}}" class="item productPage" href="#/item/{{id}}">{{title}}</a>
+                        <p>$ {{price}}</p>
+                      </div>
+                    </div>
+                    {{/each}}
+                  </div>
+                </div>
+              </div>
+            </div>
+					</section>
+				</div>
+			</div>
+		</div>
+  </script>
+  <script id="category" type="text/x-handlebars-template">
+		<div class="container">
+			<div class="row pt-6">
+				<div class="col-sm-12">
+					<section id="living" class="text-left section">
+						<h5 class="mb-3">living</h5>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-sm-12">
+                  <div class="row">
+                    {{#each this}}
+                    <div class="col-2">
+                      <div class="thumb">
+                        <img src="{{thumbnail}}">
+                        <a id="{{id}}" class="item productPage" href="#/item/{{id}}">{{title}}</a>
+                        <p>$ {{price}}</p>
+                      </div>
+                    </div>
+                    {{/each}}
+                  </div>
+                </div>
+              </div>
+            </div>
+					</section>
 				</div>
 			</div>
 		</div>
@@ -266,39 +316,43 @@
 	</script>
 	<script id="search" type="text/x-handlebars-template">
 		<div class="container">
-			<div class="row pt-3 mb-3">
+			<div class="row pt-6">
 				<div class="col-sm-12">
-					<div id="smartphones" class="text-left">
-						<h6 class="ml-5">PRODUCTOS ENCONTRADOS</h6>
-						<div class="row justify-content-center">
-							<div class="col-sm-12">
-								<div class="row">
-									{{#each this}}
-									<div class="col-2">
-										<div class="thumb">
-											<img src="{{thumbnail}}">
-											<a class="productPage" href="#/items/:id">{{title}}</a>
-											<p>$ {{price}}</p>
-										</div>
-									</div>
-									{{/each}}
-								</div>
-							</div>
-						</div>
-					</div>
+					<section id="search-results" class="text-left section">
+						<h5 class="mb-3">productos encontrados</h5>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-sm-12">
+                  <div class="row">
+                    {{#each this}}
+                    <div class="col-2">
+                      <div class="thumb">
+                        <img src="{{thumbnail}}">
+                        <a id="{{id}}" class="item productPage" href="#/item/{{id}}">{{title}}</a>
+                        <p>$ {{price}}</p>
+                      </div>
+                    </div>
+                    {{/each}}
+                  </div>
+                </div>
+              </div>
+            </div>
+					</section>
 				</div>
 			</div>
 		</div>
 	</script>
-	<!-- Script -->
+	<!-- Scripts -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	 crossorigin="anonymous"></script>
+   crossorigin="anonymous"></script>
+   <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
 	<script src="assets/js/sammy-latest.min.js"></script>
 	<script src="assets/js/handlebars-v4.0.11.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	 crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	 crossorigin="anonymous"></script>
+   crossorigin="anonymous"></script>
+   <script src="assets/js/login.js"></script>
 	<script src="assets/js/script.js"></script>
 </body>
 </html>

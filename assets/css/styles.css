@@ -36,6 +36,10 @@ button {
 	border-radius: 0!important;
 }
 
+.pt-6 {
+  padding-top: 6rem;
+}
+
 /*-----------------
 	Header
 ------------------*/
@@ -134,9 +138,9 @@ button {
 /*-----------------
 	Home
 ------------------*/
-h6 {
-	font-weight: 700;
-	font-size: 0.95rem;
+.section h5 {
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .thumb {
@@ -149,6 +153,8 @@ h6 {
 .thumb img {
 	width: 100%;
 }
+
+
 
 /*---------------------------
 	Error Page

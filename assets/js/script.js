@@ -1,7 +1,8 @@
 (function($) {
   var app = $.sammy('#main', function() {
-    // todos los productos
+    // VISTA HOME
     this.get('#/', function(context) {
+      console.log(this);
       $.ajax({
         url: 'https://api.mercadolibre.com/sites/MLC/search?',
         data: {
@@ -21,18 +22,42 @@
           let html = template(items);
           // Add the compiled html to the page:
           $('#main').html(html);
-
-          $.each(items, function(i, item) {
-            id = item.id;
-          });
         }
       });
     });
 
-    // vista producto
+    // VISTA CATEGORIA
+    this.get('#/category', function(context) {
+      console.log(this);
+      $.ajax({
+        url: 'https://api.mercadolibre.com/sites/MLC/search?',
+        data: {
+          q: 'living',
+          limit: '48'
+        },
+        dataType: 'json',
+        
+        success: function(response) {
+          context.log('the page was loaded', response);
+          let items = response.results;
+          // Grab the template script:
+          const source = $('#category').html();
+          // Compile the template:
+          const template = Handlebars.compile(source);
+          // Pass our data to the template:
+          let html = template(items);
+          // Add the compiled html to the page:
+          $('#main').html(html);
+        }
+      });
+    });
+
+    // VISTA ITEM
+    /*
     this.get('#/item/:id', function(context) {
       $.ajax({
-        url: `https://api.mercadolibre.com/items/${context}`,
+        url: 'https://api.mercadolibre.com/items',
+        id: this.id,
         dataType: 'json',
 
         success: function(response) {
@@ -49,13 +74,13 @@
           $('#main').html(html);
         }
       });
-    });
+    }); */
 
     $(function() {
       app.run('#/');
     });
 
-    // busqueda 
+    // BUSCADOR 
     let keyword = '';
     $('#searchBtn').click(function() {
       keyword = $('#searchText').val();
@@ -83,7 +108,6 @@
     });
   });
 })(jQuery);
-
 
 /*
 // PAGE HOME
